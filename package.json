@@ -1,0 +1,25 @@
+{
+  "name": "til-blog-creator",
+  "version": "1.0.0",
+  "description": "Serverless github app instance",
+  "devDependencies": {
+    "@octokit/request": "^9.1.1",
+    "@vercel/node": "^3.1.0",
+    "dos-config": "^3.0.2",
+    "eslint": "^9.2.0",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carmon/til-blog-creator.git"
+  },
+  "author": "Carmon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carmon/til-blog-creator/issues"
+  },
+  "homepage": "https://github.com/carmon/til-blog-creator#readme"
+}

@@ -1,0 +1,28 @@
+{
+    "port": 8000,
+    
+    "githubApp": {
+      "id": 0,
+      "certBase64": ""
+    },
+  
+    "oauthApp": {
+      "clientId": "",
+      "clientSecret": ""
+    },
+    
+    "vercel": {
+      "token": ""
+    },
+  
+    "twitter": {
+      "consumer": {
+        "key": "",
+        "secret": ""        
+      },
+      "access_token": {
+        "key": "",
+        "secret": ""
+      }
+    }
+  }
