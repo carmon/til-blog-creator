@@ -9,8 +9,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     if (match) {
       const [, code, repoName] = match;
       return await resolveCreate(
-        config.oauthId,
-        config.oauthSecret,
+        config.oauthApp.clientId,
+        config.oauthApp.clientSecret,
         code,
         repoName,
         res

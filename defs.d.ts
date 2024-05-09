@@ -1,7 +1,11 @@
 declare module 'dos-config' {
+    type OAuthApp = {
+        clientId: string;
+        clientSecret: string;
+    };
+
     interface Config {
-        oauthId: string;
-        oauthSecret: string;
+        oauthApp: OAuthApp;
         port: number;
     }
     const config: Config;

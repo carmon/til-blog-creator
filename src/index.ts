@@ -7,7 +7,7 @@ import formView from './views/form';
 import createdView from './views/created';
 import failedView from './views/failed';
 
-const { port } = config;
+const port = config.port || 8080;
 http
   .createServer((req, res) => 
     {
@@ -17,8 +17,7 @@ http
         .on('end', async () => {
           if (req.url === '/auth') {
             res.writeHead(302);
-            // res.end(authView(config.oauthApp.clientId));
-            res.end(authView(config.oauthId));
+            res.end(authView(config.oauthApp.clientId));
             return;
           }
 
@@ -34,10 +33,8 @@ http
             if(match) {
               const [, code, name] = match;
               const github = await createOAuthApp(
-                // config.oauthApp.clientId,
-                config.oauthId,
-                // config.oauthApp.clientSecret,
-                config.oauthSecret,
+                config.oauthApp.clientId,
+                config.oauthApp.clientSecret,
                 code, 
               );
               const created = await github.generateBlogRepo(name);
@@ -47,9 +44,7 @@ http
               res.end(created ? createdView(owner, name) : failedView(name));
               return;
             }
-
           }
-          res.end('Gracias!')
         })
         .on('error', () => { res.end({"message" : "BAD REQUEST"}); });
     }
