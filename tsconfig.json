@@ -10,8 +10,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "target": "ES2015"
   },
-  "include": ["api", "src", "src"],
-  "exclude": ["node_modules"]
+  "include": ["api", "src", "defs.d.ts"],
+  "exclude": ["node_modules"],
+  "ts-node": { "files": true }
 }
