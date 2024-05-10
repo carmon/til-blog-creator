@@ -7,7 +7,7 @@ import formView from './views/form';
 import createdView from './views/created';
 import failedView from './views/failed';
 
-const port = config.port || 8080;
+const port = config.port || 8000;
 http
   .createServer((req, res) => 
     {
