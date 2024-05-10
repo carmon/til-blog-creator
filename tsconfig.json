@@ -11,7 +11,7 @@
     "noUnusedParameters": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ES2015"
+    "target": "ES6"
   },
   "include": ["api", "src", "defs.d.ts"],
   "exclude": ["node_modules"],
