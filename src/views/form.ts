@@ -11,7 +11,7 @@ export default (
             <script>
                 const createBlog = () => {
                     const name = document.getElementById("name").value;
-                    window.location = '/create?code=${code}&name=' + name;
+                    window.location = '/api/create?code=${code}&name=' + name;
                 }
             </script>
             <style>
