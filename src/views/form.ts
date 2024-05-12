@@ -11,7 +11,9 @@ export default (
             <script>
                 const createBlog = () => {
                     const name = document.getElementById("name").value;
-                    window.location = '/api/create?code=${code}&name=' + name;
+                    let base = '';
+                    if (window.location.host !== 'localhost:8000') base += '/api';
+                    window.location = base + '/create?code=${code}&name=' + name.replaceAll(' ', '-');
                 }
             </script>
             <style>
@@ -33,6 +35,7 @@ export default (
                 <h1>til-blog-creator</h1>
                 <label for="name">Repository name</label>
                 <input id="name" autocomplete="off" type="text" />
+                <span>Blank spaces will be converted to middle lines.</span>
                 <button onclick="createBlog()">Create your blog!</button>
             </div>
         </body>

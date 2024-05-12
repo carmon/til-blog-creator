@@ -1,4 +1,5 @@
 import * as http from 'http';
+import * as fs from 'fs';
 import config from 'dos-config';
 
 import createOAuthApp from './github/create-oauth';
@@ -15,6 +16,12 @@ http
       req
         .on('data', chunk => { data += chunk; })
         .on('end', async () => {
+          if (req.url === '/') {
+            const index = fs.readFileSync('index.html');
+            res.writeHead(200);
+            res.end(index);
+            return;
+          }
           if (req.url === '/auth') {
             res.writeHead(302);
             res.end(authView(config.oauthApp.clientId));

@@ -23,6 +23,13 @@
 <body>
 <h1><u>til-blog-creator</u> <a href="https://github.com/carmon/til-blog-creator">[repo]</a></h1>
 <p>Github OAuth that recreates a repository from another.</p>
-<p>Use the app at your own risk <a href="./api/auth">HERE</a></p>
+<p>Use the app at your own risk <a id="link" href="#">HERE</a></p>
+<script>
+  // Change HERE href dinamically
+  const link = document.getElementById('link');
+  let base = '';
+  if (window.location.host !== 'localhost:8000') base += '/api';
+  link.href = base + '/auth';
+</script>
 </body>
 </html>
