@@ -1,7 +1,8 @@
+import { request } from '@octokit/request';
+
 import { GithubOAuthService } from '../types';
 
 const getUserToken = async (client_id: string, client_secret: string, code: string) => {
-  const { request } = await import('@octokit/request'); // load ESM module dinamically
   const res = await request(
     `POST https://github.com/login/oauth/access_token`, 
     { 
@@ -19,7 +20,6 @@ export default async (
     clientSecret: string,
     code: string
   ): Promise<GithubOAuthService> => {
-    const { request } = await import('@octokit/request'); // load ESM module dinamically
     const userToken = await getUserToken(clientId, clientSecret, code);
     return {
       generateBlogRepo: async (name: string) => {
