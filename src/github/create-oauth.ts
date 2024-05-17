@@ -1,6 +1,6 @@
 import { request } from '@octokit/request';
 
-import { GithubOAuthService } from '../types';
+import { GithubOAuthService } from '../types.js';
 
 const getUserToken = async (client_id: string, client_secret: string, code: string) => {
   const res = await request(

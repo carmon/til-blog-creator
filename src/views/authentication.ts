@@ -1,6 +1,6 @@
 // TS -> HTML
-import { getA } from './tags';
-import { BUTTON, DEFAULTS, DIV, H1 } from './styles';
+import { getA } from './tags.js';
+import { BUTTON, DEFAULTS, DIV, H1 } from './styles.js';
 
 const defaultScope = 'repo';
 

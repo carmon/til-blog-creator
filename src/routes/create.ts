@@ -1,9 +1,9 @@
 import { VercelResponse } from "@vercel/node";
 
-import createOAuthApp from '../github/create-oauth';
+import createOAuthApp from '../github/create-oauth.js';
 
-import createdView from '../views/created';
-import failedView from '../views/failed';
+import createdView from '../views/created.js';
+import failedView from '../views/failed.js';
 
 export default async (
   oauthId: string, 

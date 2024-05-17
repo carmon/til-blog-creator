@@ -1,6 +1,6 @@
 // TS -> HTML
 
-import { BUTTON, DEFAULTS, DIV, H1, INPUT } from './styles';
+import { BUTTON, DEFAULTS, DIV, H1, INPUT } from './styles.js';
 
 export default (
     code: string,

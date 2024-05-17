@@ -1,12 +1,13 @@
-import * as http from 'http';
-import * as fs from 'fs';
+import http from 'node:http';
+import fs from 'node:fs';
+
 import config from 'dos-config';
 
-import createOAuthApp from './github/create-oauth';
-import authView from './views/authentication';
-import formView from './views/form';
-import createdView from './views/created';
-import failedView from './views/failed';
+import createOAuthApp from './github/create-oauth.js';
+import authView from './views/authentication.js';
+import formView from './views/form.js';
+import createdView from './views/created.js';
+import failedView from './views/failed.js';
 
 const port = config.port || 8000;
 http

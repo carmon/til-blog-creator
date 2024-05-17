@@ -1,6 +1,6 @@
 import { VercelResponse } from "@vercel/node";
 
-import authView from '../views/authentication';
+import authView from '../views/authentication.js';
 
 export default (oauthId: string, res: VercelResponse) => {
   res.writeHead(302);

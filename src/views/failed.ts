@@ -1,5 +1,5 @@
 // TS -> HTML
-import { DEFAULTS, DIV, H1 } from './styles';
+import { DEFAULTS, DIV, H1 } from './styles.js';
 
 export default (
     name: string,
