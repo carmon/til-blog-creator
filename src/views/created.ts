@@ -1,6 +1,6 @@
 // TS -> HTML
-import { getA } from './tags';
-import { DEFAULTS, DIV, H1 } from './styles';
+import { getA } from './tags.js';
+import { DEFAULTS, DIV, H1 } from './styles.js';
 
 export default (
     owner: string,

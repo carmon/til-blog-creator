@@ -4,16 +4,21 @@
     "alwaysStrict": true,
     "declaration": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "noEmitOnError": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ES6"
+    "target": "ESNext"
   },
   "include": ["api", "src", "defs.d.ts"],
   "exclude": ["node_modules"],
-  "ts-node": { "files": true }
+  "ts-node": {
+		"transpileOnly": true,
+		"files": true,
+		"experimentalResolver": true
+	}
 }

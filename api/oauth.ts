@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-import resolveOauth from '../src/routes/oauth-form';
+import resolveOauth from '../src/routes/oauth-form.js';
 
 export default (req: VercelRequest, res: VercelResponse) => {
   if (req.url) {
