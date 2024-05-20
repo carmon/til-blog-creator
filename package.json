@@ -10,7 +10,7 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "dev": "ts-node-esm ./src/index.ts"
+    "dev": "node --loader ts-node/esm ./src/index.ts"
   },
   "repository": {
     "type": "git",
