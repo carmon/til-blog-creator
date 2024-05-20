@@ -37,15 +37,15 @@ http
           }
 
           if(req.url?.includes('/create')) {
-            const match = req.url.match(/\/create\?code=([\w.-]+)&name=([\w\@.-]+)/);
+            const match = req.url.match(/\/create\?code=([\w.-]+)&name=([\w\@.-]+)&title=([\w\@.-]+)/);
             if(match) {
-              const [, code, name] = match;
+              const [, code, name, title] = match;
               const github = await createOAuthApp(
                 config.oauthApp.clientId,
                 config.oauthApp.clientSecret,
                 code, 
               );
-              const created = await github.generateBlogRepo(name);
+              const created = await github.generateBlogRepo(name, title);
               const owner = await github.getOwner();              
               res.writeHead(200);
 

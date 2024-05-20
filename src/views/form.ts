@@ -10,10 +10,11 @@ export default (
             <title>til-blog-creator</title>
             <script>
                 const createBlog = () => {
-                    const name = document.getElementById("name").value;
-                    let base = '';
-                    if (window.location.host !== 'localhost:8000') base += '/api';
-                    window.location = base + '/create?code=${code}&name=' + name.replaceAll(' ', '-');
+                    const endpoint = (window.location.host !== 'localhost:8000' ? '/api' : '') + '/create?';
+                    const name = document.getElementById("name").value?.replaceAll(' ', '-');
+                    const title = document.getElementById("title").value;
+                    if (!name || !title) return;
+                    window.location = endpoint + 'code=${code}&name=' + name + '&title=' + title;
                 }
             </script>
             <style>
@@ -33,9 +34,12 @@ export default (
         <body>
             <div>
                 <h1>til-blog-creator</h1>
-                <label for="name">Repository name</label>
+                <h3>Repository config</h3>
+                <label for="name">Name</label>
                 <input id="name" autocomplete="off" type="text" />
-                <span>Blank spaces will be converted to middle lines.</span>
+                <span>*Blank spaces will be converted to middle lines.</span>
+                <label for="name">Title</label>
+                <input id="title" autocomplete="off" type="text" />
                 <button onclick="createBlog()">Create your blog!</button>
             </div>
         </body>

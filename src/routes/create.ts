@@ -10,14 +10,14 @@ export default async (
   oauthSecret: string, 
   code: string, 
   repoName: string, 
+  title: string,
   res: VercelResponse) => {
-
   const github = await createOAuthApp(
     oauthId,
     oauthSecret,
     code, 
   );
-  const created = await github.generateBlogRepo(repoName);
+  const created = await github.generateBlogRepo(repoName, title);
   const owner = await github.getOwner();              
   res.writeHead(200);
 

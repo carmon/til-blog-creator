@@ -21,8 +21,20 @@ export default async (
     code: string
   ): Promise<GithubOAuthService> => {
     const userToken = await getUserToken(clientId, clientSecret, code);
+
+    const getOwner = async () => {
+      const { data: { login: owner } } = await request(
+        `GET https://api.github.com/user`,
+        {
+          headers: {
+            authorization: `bearer ${userToken}`
+          }
+        }
+      )
+      return owner;
+    };
     return {
-      generateBlogRepo: async (name: string) => {
+      generateBlogRepo: async (name: string, title: string) => {
         try {
           const { data, status } = await request(
             `POST /repos/carmon/til-template/generate`,
@@ -31,9 +43,9 @@ export default async (
                 Accept: 'application/vnd.github.baptiste-preview+json', // needed while endpoint is still in preview
                 authorization: `bearer ${userToken}`
               }, 
-              data: { 
+              data: {
                 name,
-                description: 'A static blog created with til-blog-creator.'
+                description: `${title}: A static blog created with til-blog-creator.`
               }
             }
           );
@@ -44,16 +56,14 @@ export default async (
           return false;
         }
       },
-      getOwner: async () => {
-        const { data: { login: owner } } = await request(
-          `GET https://api.github.com/user`,
-          {
-            headers: {
-              authorization: `bearer ${userToken}`
-            }
-          }
-        )
-        return owner;
-      }
+      configBlogRepo: async (title: string) => {
+        const owner = await getOwner();
+        const { data, status } = await request(
+          `GET /repos/${owner}/`
+        );
+        console.log(data, status, title);
+        return `${title} blog configuration success.`;
+      },
+      getOwner,
     };
   };
