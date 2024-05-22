@@ -1,3 +1,4 @@
+import child_process from 'node:child_process';
 import http from 'node:http';
 import fs from 'node:fs';
 
@@ -9,6 +10,8 @@ import formView from './views/form.js';
 import createdView from './views/created.js';
 import failedView from './views/failed.js';
 
+import getURLMatch from './match.js';
+
 const port = config.port || 8000;
 http
   .createServer((req, res) => 
@@ -17,7 +20,7 @@ http
       req
         .on('data', chunk => { data += chunk; })
         .on('end', async () => {
-          if (req.url === '/') {
+          if (req.url === '/' || req.url === '/index.html') {
             const index = fs.readFileSync('index.html');
             res.writeHead(200);
             res.end(index);
@@ -37,7 +40,7 @@ http
           }
 
           if(req.url?.includes('/create')) {
-            const match = req.url.match(/\/create\?code=([\w.-]+)&name=([\w\@.-]+)&title=([\w\@.-]+)/);
+            const match = getURLMatch(req.url);
             if(match) {
               const [, code, name, title] = match;
               const github = await createOAuthApp(
@@ -59,5 +62,11 @@ http
   )
   .listen(
     port, 
-    () => { console.log(`Server listening on port ${port}`); }
+    () => { 
+      console.log(`Server listening on port ${port}`); 
+      console.log('Opening in browser...');
+      const url = `http://localhost:${port}`;
+      const start = (process.platform == 'darwin'? 'open': process.platform == 'win32'? 'start': 'xdg-open');
+      child_process.exec(`${start} ${url}`);
+    }
   );

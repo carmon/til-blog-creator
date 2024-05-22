@@ -36,7 +36,7 @@ export default async (
     return {
       generateBlogRepo: async (name: string, title: string) => {
         try {
-          const { data, status } = await request(
+          const { status } = await request(
             `POST /repos/carmon/til-template/generate`,
             {
               headers: {
@@ -49,8 +49,21 @@ export default async (
               }
             }
           );
-          console.log(data);
-          return status === 201;
+          const success = status === 201;
+          // if (success) {
+          //   const owner = await getOwner();
+          //   const { data } = await request(
+          //     `GET /repos/${owner}/${name}/contents/README.md`,
+          //     {
+          //       headers: {
+          //         authorization: `bearer ${userToken}`,
+          //         accept: 'application/vnd.github+json',
+          //       }
+          //     }
+          //   )
+          //   console.log(data);
+          // }
+          return success;
         } catch (err) {
           console.log(err);
           return false;
