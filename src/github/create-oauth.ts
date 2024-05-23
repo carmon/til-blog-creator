@@ -69,13 +69,20 @@ export default async (
           return false;
         }
       },
-      configBlogRepo: async (title: string) => {
+      configBlogRepo: async () => {
+        console.log('---------------------configBlogRepo');
         const owner = await getOwner();
-        const { data, status } = await request(
-          `GET /repos/${owner}/`
-        );
-        console.log(data, status, title);
-        return `${title} blog configuration success.`;
+        const { data } = await request(
+          `GET /repos/${owner}/name/contents/README.md`,
+          {
+            headers: {
+              authorization: `bearer ${userToken}`,
+              accept: 'application/vnd.github+json',
+            }
+          }
+        )
+        console.log(data);
+        return 'true';
       },
       getOwner,
     };
