@@ -69,11 +69,11 @@ export default async (
           return false;
         }
       },
-      configBlogRepo: async () => {
-        console.log('---------------------configBlogRepo');
+      configBlogRepo: async (name, title) => {
         const owner = await getOwner();
-        const { data } = await request(
-          `GET /repos/${owner}/name/contents/README.md`,
+        const filePath = `/repos/${owner}/${name}/contents/README.md`;
+        const { data: { content } } = await request(
+          `GET ${filePath}`,
           {
             headers: {
               authorization: `bearer ${userToken}`,
@@ -81,7 +81,18 @@ export default async (
             }
           }
         )
-        console.log(data);
+        const md = Buffer.from(content, 'base64').toString('utf-8');
+        const updatedMd = md.replace('til-template', title);
+        const result = await request(
+          `PUT ${filePath}`,
+          {
+            content: Buffer.from(updatedMd).toString('base64'),
+            headers: {
+              authorization: `bearer ${userToken}`,
+            }
+          }
+        )
+        console.log(result);
         return 'true';
       },
       getOwner,

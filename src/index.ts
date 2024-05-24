@@ -48,14 +48,12 @@ http
                 config.oauthApp.clientSecret,
                 code, 
               );
-              debugger;
-              const r = await github.configBlogRepo();
-              console.log(title, r);
-              // const created = await github.generateBlogRepo(name, title);
-              const created = true;
+              const created = await github.generateBlogRepo(name, title);
+              if (created) {
+                await github.configBlogRepo(name, title);
+              }
               const owner = await github.getOwner();
               res.writeHead(200);
-
               res.end(created ? createdView(owner, name) : failedView(name));
               return;
             }
